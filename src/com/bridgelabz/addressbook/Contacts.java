@@ -99,4 +99,5 @@ public class Contacts {
     public String getEmail() {
         return email;
     }
+
 }
