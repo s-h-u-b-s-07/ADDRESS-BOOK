@@ -15,7 +15,7 @@ public class AddressBook {
     int zip;
     long phoneNumber;
     String email;
-    private List<Contacts> contactList = new ArrayList<>();
+    private List<Contacts> contactList = new ArrayList<>();;
 
     Scanner sc = new Scanner(System.in);
 
@@ -24,30 +24,33 @@ public class AddressBook {
         Contacts person = new Contacts();
         System.out.println("Enter your First Name");
         firstName = sc.next();
-        person.setFirstName(firstName);
-        System.out.println("Enter your Last Name");
-        lastName = sc.next();
-        person.setLastName(lastName);
-        System.out.println("Enter your Address");
-        address = sc.next();
-        person.setAddress(address);
-        System.out.println("Enter your City");
-        city = sc.next();
-        person.setCity(city);
-        System.out.println("Enter your State");
-        state = sc.next();
-        person.setState(state);
-        System.out.println("Enter your ZipCode");
-        zip = sc.nextInt();
-        person.setZip(zip);
-        System.out.println("Enter your Phone Number");
-        phoneNumber = sc.nextLong();
-        person.setPhoneNumber(phoneNumber);
-        System.out.println("Enter your E-mail");
-        email = sc.next();
-        person.setEmail(email);
-        contactList.add(new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email));
-
+        if (getIndex(firstName)==-1) {
+            person.setFirstName(firstName);
+            System.out.println("Enter your Last Name");
+            lastName = sc.next();
+            person.setLastName(lastName);
+            System.out.println("Enter your Address");
+            address = sc.next();
+            person.setAddress(address);
+            System.out.println("Enter your City");
+            city = sc.next();
+            person.setCity(city);
+            System.out.println("Enter your State");
+            state = sc.next();
+            person.setState(state);
+            System.out.println("Enter your ZipCode");
+            zip = sc.nextInt();
+            person.setZip(zip);
+            System.out.println("Enter your Phone Number");
+            phoneNumber = sc.nextLong();
+            person.setPhoneNumber(phoneNumber);
+            System.out.println("Enter your E-mail");
+            email = sc.next();
+            person.setEmail(email);
+            contactList.add(new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email));
+        }else {
+            System.out.println("Enter name again");
+        }
     }
 
     public void display() {
@@ -90,7 +93,7 @@ public class AddressBook {
         System.out.println("Enter your E-mail");
         email = sc.next();
 
-        contactList.set(i, (new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email)));
+        contactList.add((new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email)));
 
     }
 
@@ -137,5 +140,6 @@ public class AddressBook {
 
     public void removeContact(int index) {
         contactList.remove(index);
+
     }
 }
