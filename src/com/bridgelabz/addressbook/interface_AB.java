@@ -1,6 +1,6 @@
 package com.bridgelabz.addressbook;
 
-public interface AddressBookService {
+public interface interface_AB {
     public void removeContact(int index);
 
     public void updateContact(int i);
@@ -8,4 +8,5 @@ public interface AddressBookService {
     public void display();
 
     public void addContact();
+
 }
