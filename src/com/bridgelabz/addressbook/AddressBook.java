@@ -1,12 +1,11 @@
 package com.bridgelabz.addressbook;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class AddressBook {
 
+    private static final String String = null;
     String firstName;
     String lastName;
     String address;
@@ -33,29 +32,29 @@ public class AddressBook {
     public void addContact() {
 
         Contacts person = new Contacts();
-        System.out.println("First Name : ");
+        System.out.println("Enter your First Name");
         firstName = sc.next();
 
         person.setFirstName(firstName);
-        System.out.println("Last Name : ");
+        System.out.println("Enter your Last Name");
         lastName = sc.next();
         person.setLastName(lastName);
-        System.out.println("Address : ");
+        System.out.println("Enter your Address");
         address = sc.next();
         person.setAddress(address);
-        System.out.println("City :");
+        System.out.println("Enter your City");
         city = sc.next();
         person.setCity(city);
-        System.out.println("State : ");
+        System.out.println("Enter your State");
         state = sc.next();
         person.setState(state);
-        System.out.println("ZipCode : ");
+        System.out.println("Enter your ZipCode");
         zip = sc.nextInt();
         person.setZip(zip);
-        System.out.println("Phone Number : ");
+        System.out.println("Enter your Phone Number");
         phoneNumber = sc.nextLong();
         person.setPhoneNumber(phoneNumber);
-        System.out.println("E-mail : ");
+        System.out.println("Enter your E-mail");
         email = sc.next();
         person.setEmail(email);
         contactList.add(new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email));
@@ -93,21 +92,21 @@ public class AddressBook {
 
     public void updateContact(int i) {
 
-        System.out.println("First Name :");
+        System.out.println("Enter your First Name");
         firstName = sc.next();
-        System.out.println("Last Name :");
+        System.out.println("Enter your Last Name");
         lastName = sc.next();
-        System.out.println("Address : ");
+        System.out.println("Enter your Address");
         address = sc.next();
-        System.out.println("City : ");
+        System.out.println("Enter your City");
         city = sc.next();
-        System.out.println("State : ");
+        System.out.println("Enter your State");
         state = sc.next();
-        System.out.println("ZipCode : ");
+        System.out.println("Enter your ZipCode");
         zip = sc.nextInt();
-        System.out.println("Phone Number : ");
+        System.out.println("Enter your Phone Number");
         phoneNumber = sc.nextLong();
-        System.out.println("E-mail : ");
+        System.out.println("Enter your E-mail");
         email = sc.next();
 
         contactList.set(i, (new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email)));
@@ -120,6 +119,7 @@ public class AddressBook {
     }
 
     public void searchByCityName() {
+        Map<String, String> map = new HashMap<>();
         System.out.println("Enter City Name or State Name");
         String searchText = sc.next();
 
@@ -128,11 +128,13 @@ public class AddressBook {
             if (contactList.get(i).getCity().contains(searchText)
                     || contactList.get(i).getState().contains(searchText)) {
                 System.out.println("Result according to city name : " + contactList.get(i));
-            }
-            else {
+
+            } else {
                 System.out.println("No Match Found.");
             }
-
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                System.out.println(entry.getKey() + "-" + entry.getValue());
+            }
         }
     }
 }
