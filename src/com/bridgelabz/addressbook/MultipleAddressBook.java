@@ -3,22 +3,23 @@ package com.bridgelabz.addressbook;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
+
 import java.util.Scanner;
 
 public class MultipleAddressBook {
-    Map<String, List> mbook = new HashMap();
+    Map<String, List> mbook = new HashMap<>();
     Scanner sc = new Scanner(System.in);
-    String bookName;
+    String bookName = "";
 
     public void newAddressBook() {
+        AddressBook addressBook = new AddressBook();
         System.out.println("Enter new Address Book Name");
         bookName = sc.next();
         if (mbook.containsKey(bookName)) {
             System.out.println("Book Name is aleady Exist.");
         } else {
             addAddressBook();
-            mbook.put(bookName, AddressBook.getContactList());
+            mbook.put(bookName, addressBook.getContactList());
         }
     }
 
@@ -60,14 +61,16 @@ public class MultipleAddressBook {
                     break;
                 case 6:
                     System.out.println("Do you wank to exit the address book? \nEnter 1. New Address Book \n2. Exist");
+
                     int temp = sc.nextInt();
-                    switch(temp) {
+                    switch (temp) {
                         case 1:
                             newAddressBook();
                             break;
                         case 2:
                             System.out.println("Exit" + bookName);
-                            System.exit(0);
+                            act = 0;
+                            break;
 
                     }
             }
@@ -76,9 +79,9 @@ public class MultipleAddressBook {
 
     public void displayBook() {
         System.out.println("AddressBooks");
-        for (Entry<String, List> entry : mbook.entrySet()) {
-            System.out.println("Address Book name is " + entry.getKey() + "\nvalue :-\n" + entry.getValue().toString());
-        }
+        mbook.entrySet().stream().forEach(System.out::println);
+
+
     }
 
 }

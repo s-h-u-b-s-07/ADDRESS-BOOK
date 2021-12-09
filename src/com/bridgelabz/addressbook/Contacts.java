@@ -14,13 +14,6 @@ public class Contacts {
     public long phoneNumber;
     public String email;
 
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "Contact [firstName=" + firstName + ", lastName=" + lastName + ", address="
-                + address + ", city=" + city + ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber
-                + ", email=" + email + "]";
-    }
-
     public Contacts() {
     }
 
@@ -98,6 +91,13 @@ public class Contacts {
 
     public String getEmail() {
         return email;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "Contact [firstName=" + firstName + ", lastName=" + lastName + ", address="
+                + address + ", city=" + city + ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber
+                + ", email=" + email + "]";
     }
 
 }
