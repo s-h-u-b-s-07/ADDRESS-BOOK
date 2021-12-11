@@ -17,7 +17,7 @@ public class MultipleAddressBook {
         System.out.println("Enter new Address Book Name");
         bookName = sc.next();
         if (mbook.containsKey(bookName)) {
-            System.out.println("Book Name is already Exist.");
+            System.out.println("Book Name is aleady Exist.");
         } else {
             addAddressBook();
             mbook.put(bookName, addressBook.getContactList());
@@ -31,7 +31,7 @@ public class MultipleAddressBook {
         System.out.println("Welcome to Address Book");
         do {
             System.out.println(
-                    "Enter\n1.Add\n2.Update\n3.Delete\n4.Print\n5.Search by City or State \n6.5.View by City or State\n7.Exit");
+                    "Enter\n1.Add\n2.Update\n3.Delete\n4.Print\n5.Search by City or State \n6.View by City or State\n7.Exit");
             act = sc.nextInt();
             int index = -1;
             String fName;
