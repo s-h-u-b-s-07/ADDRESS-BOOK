@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class MultipleAddressBook {
+
     Map<String, List> mbook = new HashMap<>();
     Scanner sc = new Scanner(System.in);
     String bookName = "";
@@ -16,7 +17,7 @@ public class MultipleAddressBook {
         System.out.println("Enter new Address Book Name");
         bookName = sc.next();
         if (mbook.containsKey(bookName)) {
-            System.out.println("Book Name is aleady Exist.");
+            System.out.println("Book Name is already Exist.");
         } else {
             addAddressBook();
             mbook.put(bookName, addressBook.getContactList());
@@ -30,7 +31,7 @@ public class MultipleAddressBook {
         System.out.println("Welcome to Address Book");
         do {
             System.out.println(
-                    "Enter\n1.Add\n2.Update\n3.Delete\n4.Print\n5.Search by City \n6.Search by State \n7.exit");
+                    "Enter\n1.Add\n2.Update\n3.Delete\n4.Print\n5.Search by City or State \n6.5.View by City or State\n7.Exit");
             act = sc.nextInt();
             int index = -1;
             String fName;
@@ -58,10 +59,10 @@ public class MultipleAddressBook {
                     addressBook.display();
                     break;
                 case 5:
-                    addressBook.searchByCityName();
+                    addressBook.searchByCity_or_State_Name();
                     break;
                 case 6:
-                    addressBook.searchByStateName();
+                    addressBook.view_By_City_or_State_Name();
                     break;
                 case 7:
                     System.out.println("Exit" + bookName);
@@ -77,6 +78,7 @@ public class MultipleAddressBook {
         mbook.entrySet().stream().forEach(System.out::println);
 
     }
+
 
 
 }

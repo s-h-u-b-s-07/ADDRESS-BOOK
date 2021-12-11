@@ -116,19 +116,21 @@ public class AddressBook {
 
     }
 
-    public void searchByCityName() {
-        Map<String, String> map = new HashMap<>();
-        System.out.println("Enter City Name ");
+    public void searchByCity_or_State_Name() {
+
+        System.out.println("Enter City Name  or State Name ");
         String searchText = sc.next();
-        contactList.stream().filter(c -> c.getCity().equals(searchText)).forEach(System.out::println);
+        contactList.stream().filter(c -> (c.getCity().equals(searchText) || c.getState().equals(searchText)))
+                .forEach(System.out::println);
 
     }
 
-    public void searchByStateName() {
-        Map<String, String> map = new HashMap<>();
-        System.out.println("Enter State Name");
+    public void view_By_City_or_State_Name() {
+
+        System.out.println("Enter City Name  or State Name ");
         String searchText = sc.next();
-        contactList.stream().filter(c -> c.getState().equals(searchText)).forEach(System.out::println);
+        contactList.stream().filter(c -> (c.getCity().equals(searchText) || c.getState().equals(searchText))).forEach(
+                p -> System.out.println("First Name : " + p.getFirstName() + "  Last Name : " + p.getLastName()));
 
     }
 }
