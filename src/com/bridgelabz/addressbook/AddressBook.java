@@ -34,7 +34,7 @@ public class AddressBook {
 
     Scanner sc = new Scanner(System.in);
 
-    public void addContact() {
+    public List<Contacts> addContact() {
 
         Contacts contacts = new Contacts();
         System.out.println("First Name : ");
@@ -66,6 +66,7 @@ public class AddressBook {
         } else {
             System.out.println("Duplicate cant be add");
         }
+        return contactList;
 
     }
 

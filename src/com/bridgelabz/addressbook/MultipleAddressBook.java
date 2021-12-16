@@ -1,10 +1,8 @@
 package com.bridgelabz.addressbook;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import java.util.Scanner;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 public class MultipleAddressBook {
 
@@ -12,23 +10,24 @@ public class MultipleAddressBook {
     Scanner sc = new Scanner(System.in);
     String bookName = "";
 
-    public void newAddressBook() {
+    public void newAddressBook() throws IOException {
         AddressBook addressBook = new AddressBook();
         System.out.println("Enter new Address Book Name");
         bookName = sc.next();
         if (mbook.containsKey(bookName)) {
-            System.out.println("Book Name is aleady Exist.");
+            System.out.println("Book Name is already Exist.");
         } else {
             addAddressBook();
             mbook.put(bookName, addressBook.getContactList());
         }
     }
 
-    public void addAddressBook() {
+    public void addAddressBook() throws IOException {
         AddressBook addressBook = new AddressBook();
 
         int act;
-        System.out.println("Welcome to Address Book");
+        System.out.println("*****Welcome to Address Book*****");
+        List<Contacts> details = new ArrayList<>();
         do {
             System.out.println(
                     "Enter\n1.Add\n2.Update\n3.Delete\n4.Print\n5.Search by City or State \n6.View by City or State"
@@ -38,10 +37,10 @@ public class MultipleAddressBook {
             String fName;
             switch (act) {
                 case 1:
-                    addressBook.addContact();
+                    details = addressBook.addContact();
                     break;
                 case 2:
-                    System.out.println("Enter your First name to update");
+                    System.out.println("Enter your First name to update : ");
                     fName = sc.next();
                     index = addressBook.getIndex(fName);
                     if (index < 0) {
@@ -50,7 +49,7 @@ public class MultipleAddressBook {
                     addressBook.updateContact(index);
                     break;
                 case 3:
-                    System.out.println("Enter your First name to delete");
+                    System.out.println("Enter your First name to delete : ");
                     fName = sc.next();
                     index = addressBook.getIndex(fName);
                     addressBook.removeContact(index);
@@ -84,6 +83,9 @@ public class MultipleAddressBook {
 
             }
         } while (act > 0 || act > 5);
+
+        AddressBookFile addressBookFile = new AddressBookFile();
+        addressBookFile.writingAddressBook(details);
     }
 
     public void displayBook() {
