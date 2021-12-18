@@ -21,7 +21,7 @@ public class AddressBookFile {
         System.out.println("ADDRESSBOOK : \n"+Data);
     }
 
-    public void writingAddressBook(List<Contacts> contactsList) throws IOException {
+    public void writingAddressBook(List<main.java.com.bridgelabz.addressbook.Contacts> contactsList) throws IOException {
 
         File file = new File(Location);
         FileWriter output = new FileWriter(Location);
