@@ -1,46 +1,48 @@
 package com.bridgelabz.addressbook;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
 
 public class MultipleAddressBook {
 
-    Map<String, List> mbook = new HashMap<>();
+    Map<String, List> book = new HashMap();
     Scanner sc = new Scanner(System.in);
-    String bookName = "";
+    static String bookName;
 
     public void newAddressBook() throws IOException {
-        AddressBook addressBook = new AddressBook();
-        System.out.println("Enter new Address Book Name");
+        System.out.println("Enter Book name");
         bookName = sc.next();
-        if (mbook.containsKey(bookName)) {
-            System.out.println("Book Name is already Exist.");
+        if (book.containsKey(bookName)) {
+            System.out.println("Address book name exists");
         } else {
             addAddressBook();
-            mbook.put(bookName, addressBook.getContactList());
+            book.put(bookName, AddressBook.getContactList());
         }
     }
 
-    public void addAddressBook() throws IOException {
-        AddressBook addressBook = new AddressBook();
 
+    public void addAddressBook() throws IOException {
+
+        AddressBook addressBook = new AddressBook();
         int act;
-        System.out.println("*****Welcome to Address Book*****");
-        List<Contacts> details = new ArrayList<>();
+        System.out.println("Welcome to Address Book");
+        List<Contact> contactList = new ArrayList<Contact>();
         do {
-            System.out.println(
-                    "Enter\n1.Add\n2.Update\n3.Delete\n4.Print\n5.Search by City or State \n6.View by City or State"
-                            + "\n7.Sort by Name \n8.Sort by City \n9.Sort by State \n10.Sort by Zip \n11.Exit");
+            System.out.println("Enter\n1.Add\n2.Update\n3.Delete\n4.Print\n5.City Name\n7.State\n8.Exit");
             act = sc.nextInt();
             int index = -1;
             String fName;
             switch (act) {
                 case 1:
-                    details = addressBook.addContact();
+                    contactList = addressBook.addContact();
                     break;
                 case 2:
-                    System.out.println("Enter your First name to update : ");
+                    System.out.println("Enter your First name to update");
                     fName = sc.next();
                     index = addressBook.getIndex(fName);
                     if (index < 0) {
@@ -49,7 +51,7 @@ public class MultipleAddressBook {
                     addressBook.updateContact(index);
                     break;
                 case 3:
-                    System.out.println("Enter your First name to delete : ");
+                    System.out.println("Enter your First name to delete");
                     fName = sc.next();
                     index = addressBook.getIndex(fName);
                     addressBook.removeContact(index);
@@ -58,39 +60,34 @@ public class MultipleAddressBook {
                 case 4:
                     addressBook.display();
                     break;
+
                 case 5:
-                    addressBook.searchByCity_or_State_Name();
+                    addressBook.searchByCityName();
                     break;
                 case 6:
-                    addressBook.view_By_City_or_State_Name();
+                    addressBook.searchByStateName();
                     break;
+
                 case 7:
-                    addressBook.sortedContactByFirstName();
+                    addressBook.viewCityName();
+                    addressBook.viewStateName();
                     break;
+
                 case 8:
-                    addressBook.sortedContactByCity();
-                    break;
-                case 9:
-                    addressBook.sortedContactByState();
-                    break;
-                case 10:
-                    addressBook.sortedContactByZip();
-                    break;
-                case 11:
-                    System.out.println("Exit" + bookName);
+                    System.out.println("exit " + bookName);
                     act = 0;
-                    break;
-
             }
-        } while (act > 0 || act > 5);
-
-        AddressBookFile addressBookFile = new AddressBookFile();
-        addressBookFile.writingAddressBook(details);
+        } while (act > 0 || act > 9);
+        AddressBookFile fileIO = new AddressBookFile();
+        System.out.println(contactList);
+        fileIO.writeAddressBook(contactList);
+        CSV csv = new CSV();
+        csv.write(contactList);
     }
 
     public void displayBook() {
-        System.out.println("AddressBooks");
-        mbook.entrySet().stream().forEach(System.out::println);
-
+        book.entrySet().stream().forEach(el -> System.out.println(el));//STREAM
     }
+
+
 }

@@ -1,25 +1,28 @@
-package main.java.com.bridgelabz.addressbook;
+package com.bridgelabz.addressbook;
 
-import java.util.Scanner;
+public class Contact {
 
-public class Contacts {
+    private String firstName;
+    private String lastName;
+    private String address;
+    private String city;
+    private String state;
+    private String zip;
+    private String phoneNumber;
+    private String email;
 
-    Scanner sc = new Scanner(System.in);
-
-    public static String firstName;
-    public String lastName;
-    public String address;
-    public String city;
-    public String state;
-    public String zip;
-    public long phoneNumber;
-    public String email;
-
-    public Contacts() {
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "[firstName=" + firstName + ", lastName=" + lastName + ", address="
+                + address + ", city=" + city + ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber
+                + ", email=" + email + "]";
     }
 
-    Contacts(String firstName, String lastName, String address, String city, String state, String zip, long phoneNumber,
-             String email) {
+    public Contact() {
+    }
+
+    Contact(String firstName, String lastName, String address, String city, String state, String zip, String phoneNumber,
+            String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -54,7 +57,7 @@ public class Contacts {
         return zip;
     }
 
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -82,7 +85,7 @@ public class Contacts {
         this.zip = zip;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -92,13 +95,6 @@ public class Contacts {
 
     public String getEmail() {
         return email;
-    }
-
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "Contact [firstName=" + firstName + ", lastName=" + lastName + ", address="
-                + address + ", city=" + city + ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber
-                + ", email=" + email + "]";
     }
 
 }

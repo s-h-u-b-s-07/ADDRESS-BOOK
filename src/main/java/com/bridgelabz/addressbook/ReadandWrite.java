@@ -3,8 +3,8 @@ package com.bridgelabz.addressbook;
 import java.io.IOException;
 import java.util.List;
 
-public interface ReadingWriting {
+public interface ReadandWrite {
 
-    void write(List<main.java.com.bridgelabz.addressbook.Contacts> contactsList) throws IOException;
+    void write(List<Contact> contactList) throws IOException;
     void read(String name) throws IOException;
 }
